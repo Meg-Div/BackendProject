@@ -57,7 +57,17 @@ router.get("/home", (req, res) => {
   res.render("pages/home", {});
 });
 
-//login: - notworking
+//review
+router.get("/review", (req, res) => {
+  res.render("pages/review", {});
+});
+
+//you voted
+router.get("/youvoted", (req, res) => {
+  res.render("pages/youvoted", {});
+});
+
+//login:
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   console.log(req.body);
@@ -83,13 +93,25 @@ router.post("/login", async (req, res) => {
   }
 });
 
-//logout:
-router.post("/logout", (req, res) => {
-  if (req.session) {
-    req.session.destroy((err) => {
-      res.redirect("/login");
+//create
+router.get("/create", (req, res) => {
+  const { firstname, lastname, username, password, zip } = req.body;
+  bcrypt.hash(password, 10, async (err, hash) => {
+    const dist = 1;
+    zip[0] < 5 ? dist == 1 : dist == 2;
+    const user = await Users.create({
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      password: hash,
+      zip: zip,
+      districtid: dist,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
-  }
+    res.status(200).render("pages/login");
+  });
+  res.render("pages/create", {});
 });
 
 //hub
@@ -110,44 +132,11 @@ router.get("/hub", async (req, res) => {
       districtid: req.session.user.districtid,
     },
   });
-
-  console.log(p);
   res.render("pages/hub", {
     user: user,
     district: district,
     position: position,
   });
-});
-
-//review
-router.get("/review", (req, res) => {
-  res.render("pages/review", {});
-});
-
-//you voted
-router.get("/youvoted", (req, res) => {
-  res.render("pages/youvoted", {});
-});
-
-//create
-router.get("/create", (req, res) => {
-  const { firstname, lastname, username, password, zip } = req.body;
-  bcrypt.hash(password, 10, async (err, hash) => {
-    const dist = 1;
-    zip[0] < 5 ? dist == 1 : dist == 2;
-    const user = await Users.create({
-      firstname: firstname,
-      lastname: lastname,
-      username: username,
-      password: hash,
-      zip: zip,
-      districtid: dist,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    res.status(200).render("pages/login");
-  });
-  res.render("pages/create", {});
 });
 
 module.exports = router;
