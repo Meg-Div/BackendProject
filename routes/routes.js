@@ -45,8 +45,10 @@ const authenticate = (req, res, next) => {
   }
 };
 
+//authenticate
+
 //admin:
-router.get("/admin", authenticate, (req, res) => {
+router.get("/admin", (req, res) => {
   res.render("pages/admin", {});
 });
 
@@ -55,7 +57,7 @@ router.get("/home", (req, res) => {
   res.render("pages/home", {});
 });
 
-//login:
+//login: - notworking
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   console.log(req.body);
@@ -91,7 +93,7 @@ router.post("/logout", (req, res) => {
 });
 
 //hub
-router.get("/hub", authenticate, async (req, res) => {
+router.get("/hub", async (req, res) => {
   console.log(req.session.user);
   const user = await Users.findOne({
     where: {
@@ -118,20 +120,17 @@ router.get("/hub", authenticate, async (req, res) => {
 });
 
 //review
-router.post("/review", authenticate, (req, res) => {
-  if (form.body.length < 1) {
-    res.status(400);
-  }
+router.get("/review", (req, res) => {
   res.render("pages/review", {});
 });
 
 //you voted
-router.get("/youvoted", authenticate, (req, res) => {
+router.get("/youvoted", (req, res) => {
   res.render("pages/youvoted", {});
 });
 
 //create
-router.get("/create", authenticate, (req, res) => {
+router.get("/create", (req, res) => {
   const { firstname, lastname, username, password, zip } = req.body;
   bcrypt.hash(password, 10, async (err, hash) => {
     const dist = 1;
