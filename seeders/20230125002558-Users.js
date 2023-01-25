@@ -30,7 +30,7 @@ module.exports = {
         lastname: "Jamerson",
         password: "password",
         admin: false,
-        zip: 94598,
+        zip: 10002,
         districtid: 2,
         createdAt: new Date(),
         updatedAt: new Date(),

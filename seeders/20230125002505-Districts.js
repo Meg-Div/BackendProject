@@ -15,9 +15,16 @@ module.exports = {
 
     await queryInterface.bulkInsert("Districts", [
       {
-        county: "Contra Costa",
+        county: "Contra Costa County",
         state: "CA",
         population: "1161000",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        county: "Knox County",
+        state: "TN",
+        population: "420069",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

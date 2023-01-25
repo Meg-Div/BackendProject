@@ -67,13 +67,17 @@ router.get("/youvoted", (req, res) => {
   res.render("pages/youvoted", {});
 });
 
+router.get("/login", (req, res) => {
+  res.render("pages/login");
+});
+
 //login:
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  console.log(req.body);
+  console.log(req.session.user);
   const user = await Users.findOne({
     where: {
-      username: username,
+      username: req.session.username,
     },
   });
   const match = bcrypt.compare(password, user.password, (err, result) => {
@@ -93,8 +97,12 @@ router.post("/login", async (req, res) => {
   }
 });
 
-//create
 router.get("/create", (req, res) => {
+  res.render("pages/create");
+});
+
+//create
+router.post("/create", (req, res) => {
   const { firstname, lastname, username, password, zip } = req.body;
   bcrypt.hash(password, 10, async (err, hash) => {
     const dist = 1;
@@ -116,12 +124,13 @@ router.get("/create", (req, res) => {
 
 //hub
 router.get("/hub", async (req, res) => {
-  console.log(req.session.user);
+  const { username, password } = req.body;
   const user = await Users.findOne({
     where: {
-      username: req.session.user.username,
+      username: req.session.username,
     },
   });
+  console.log("username:", user.username);
   const district = await Districts.findOne({
     where: {
       districtid: req.session.user.districtid,
