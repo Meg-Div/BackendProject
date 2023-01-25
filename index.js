@@ -5,8 +5,11 @@ const PORT = 3009;
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const { Customers } = require("./sequelize/models");
+const { Users } = require("./sequelize/models");
 const models = require("./sequelize/models");
+
+const bcrypt = require("bcrypt");
+const router = express.Router();
 
 //middleware
 app.use(express.json());
@@ -58,22 +61,29 @@ const authenticate = (req, res, next) => {
 
 //about us
 
-app.get("/aboutus", authenticate, (req, res) => {
-  res.render("pages/aboutus", {});
+app.get("/home", authenticate, (req, res) => {
+  res.render("pages/home", {});
 });
 
 //create
 app.get("/create", authenticate, (req, res) => {
-  const { firstname, lastname, username, password, admin, zip } = req.body;
-
+  const { firstname, lastname, username, password, zip } = req.body;
+  bcrypt.hash(password, 10, async (err, hash) => {
+    const dist = 1;
+    zip[0] < 5 ? dist == 1 : dist == 2;
+    const user = await Users.create({
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      password: hash,
+      zip: zip,
+      district: dist,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+    res.status(200).render("pages/login");
+  });
   res.render("pages/create", {});
-  console.log(req.body.zip);
-  console.log(req.body.district);
-  if (req.body.zip[0] <= 5) {
-    req.body.district == 1;
-  } else {
-    req.body.district == 2;
-  }
 });
 
 router.post("/create_user", (req, res) => {
@@ -84,7 +94,7 @@ router.post("/create_user", (req, res) => {
       lastName: lastName,
       userName: userName,
       password: hash,
-      createdAT: new Date(),
+      createdAt: new Date(),
       updatedAt: new Date(),
     });
     res.status(200).render("pages/login");
@@ -116,8 +126,6 @@ app.post("/logout", (req, res) => {
   }
 });
 
-//login
-//authentication
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   console.log(req.body);
@@ -126,20 +134,19 @@ app.post("/login", async (req, res) => {
       username: username,
     },
   });
-  if (!user) {
-    res.status(400).send("No user found");
-    return;
-  }
-  //would normally use bcrypt instead of req.body
-  if (user.password === req.body.password) {
-    //where we start a session:
-    console.log(user.dataValues);
-    req.session.user = user.dataValues;
-    res.redirect("/login");
-    return;
-  } else {
-    res.status(400).send("Incorrect username or password");
-  }
+  bcrypt.compare(password, user.password, (err, result) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
+    if (!result) {
+      res.status(401).send("Your password does not match.");
+      res.redirect("/login");
+      return;
+    }
+  });
 });
+
+module.exports = router;
 
 app.listen(3006, console.log(`logged into port 3006`));
