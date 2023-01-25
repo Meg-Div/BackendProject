@@ -1,0 +1,56 @@
+/* colors:
+    #d63c3c
+    #008cbd
+    #0c0024
+    #531b6c
+    #e2dddb */
+
+/* Dunbar Tall Regular
+font-family: "dunbar-tall", sans-serif;
+font-weight: 500;
+font-style: normal;
+
+Dunbar Tall Medium
+font-family: "dunbar-tall", sans-serif;
+font-weight: 600;
+font-style: normal;
+
+Dunbar Tall Bold
+font-family: "dunbar-tall", sans-serif;
+font-weight: 700;
+font-style: normal;
+
+Dunbar Tall Extra Bold
+font-family: "dunbar-tall", sans-serif;
+font-weight: 800;
+font-style: normal;
+
+Dunbar Tall Ultra
+font-family: "dunbar-tall", sans-serif;
+font-weight: 900;
+font-style: normal;
+
+Dunbar Text Regular
+font-family: "dunbar-text", sans-serif;
+font-weight: 500;
+font-style: normal;
+
+Dunbar Text Bold
+font-family: "dunbar-text", sans-serif;
+font-weight: 700;
+font-style: normal; */
+
+body {
+  background-color: #531b6c;
+  font-family: "dunbar-text", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.logo {
+  max-width: 150px;
+}
+
+.vote {
+  max-width: 300px;
+}
