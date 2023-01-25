@@ -51,7 +51,7 @@ router.get("/admin", authenticate, (req, res) => {
 });
 
 //home:
-router.get("/home", authenticate, (req, res) => {
+router.get("/home", (req, res) => {
   res.render("pages/home", {});
 });
 

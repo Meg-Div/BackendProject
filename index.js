@@ -7,13 +7,7 @@ const routes = require("./routes/routes");
 app.set("view engine", "ejs");
 
 //route to the files in Routes folder
-app.use("/admin", routes);
-app.use("/create", routes);
-app.use("/home", routes);
-app.use("/hub", routes);
-app.use("login", routes);
-app.use("/review", routes);
-app.use("/youvoted", routes);
+app.use("/", routes);
 
 //localhost:3006/clinic/get_clinic
 
