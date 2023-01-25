@@ -45,14 +45,26 @@ const authenticate = (req, res, next) => {
   }
 };
 
+//authenticate
+
 //admin:
-router.get("/admin", authenticate, (req, res) => {
+router.get("/admin", (req, res) => {
   res.render("pages/admin", {});
 });
 
 //home:
 router.get("/home", (req, res) => {
   res.render("pages/home", {});
+});
+
+//review
+router.get("/review", (req, res) => {
+  res.render("pages/review", {});
+});
+
+//you voted
+router.get("/youvoted", (req, res) => {
+  res.render("pages/youvoted", {});
 });
 
 //login:
@@ -81,57 +93,8 @@ router.post("/login", async (req, res) => {
   }
 });
 
-//logout:
-router.post("/logout", (req, res) => {
-  if (req.session) {
-    req.session.destroy((err) => {
-      res.redirect("/login");
-    });
-  }
-});
-
-//hub
-router.get("/hub", authenticate, async (req, res) => {
-  console.log(req.session.user);
-  const user = await Users.findOne({
-    where: {
-      username: req.session.user.username,
-    },
-  });
-  const district = await Districts.findOne({
-    where: {
-      districtid: req.session.user.districtid,
-    },
-  });
-  const position = await Positions.findOne({
-    where: {
-      districtid: req.session.user.districtid,
-    },
-  });
-
-  console.log(p);
-  res.render("pages/hub", {
-    user: user,
-    district: district,
-    position: position,
-  });
-});
-
-//review
-router.post("/review", authenticate, (req, res) => {
-  if (form.body.length < 1) {
-    res.status(400);
-  }
-  res.render("pages/review", {});
-});
-
-//you voted
-router.get("/youvoted", authenticate, (req, res) => {
-  res.render("pages/youvoted", {});
-});
-
 //create
-router.get("/create", authenticate, (req, res) => {
+router.get("/create", (req, res) => {
   const { firstname, lastname, username, password, zip } = req.body;
   bcrypt.hash(password, 10, async (err, hash) => {
     const dist = 1;
@@ -149,6 +112,31 @@ router.get("/create", authenticate, (req, res) => {
     res.status(200).render("pages/login");
   });
   res.render("pages/create", {});
+});
+
+//hub
+router.get("/hub", async (req, res) => {
+  console.log(req.session.user);
+  const user = await Users.findOne({
+    where: {
+      username: req.session.user.username,
+    },
+  });
+  const district = await Districts.findOne({
+    where: {
+      districtid: req.session.user.districtid,
+    },
+  });
+  const position = await Positions.findOne({
+    where: {
+      districtid: req.session.user.districtid,
+    },
+  });
+  res.render("pages/hub", {
+    user: user,
+    district: district,
+    position: position,
+  });
 });
 
 module.exports = router;
