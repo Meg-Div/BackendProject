@@ -45,33 +45,41 @@ router.get("/login", (req, res) => {
 
 //login:
 
+// Log in post route -- actually checks to see if that user exists in the database.
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
+  // getting the user from the database
   const user = await Users.findOne({
     where: {
       username: username,
     },
   });
-  if (password == user.password) {
-    console.log(user.username);
-    console.log(username);
-    console.log(user.password);
-    console.log(password);
+  // checking username
+  if (!user) {
+    res.render("pages/login", { modal: "Username not found." });
+    return;
   }
-  bcrypt.compare(password, user.password, (err, result) => {
+  if (user.password == password) {
+    req.session.user = user.dataValues;
+    console.log(req.session);
+    res.redirect("/hub");
+  }
+  /* bcrypt.compare(password, user.password, (err, result) => {
     if (err) {
-      res.send(err);
+      res.render("pages/login", { modal: "Server error. Please try again." });
       return;
     }
     if (!result) {
-      console.log(user);
-      console.log(user.password);
-      console.log(user.username);
-      res.status(401).send("Your password does not match.");
+      // result will be true if the passwords match
+      res.render("pages/login", { modal: "Incorrect password. Try again." });
       return;
     }
-    res.status(200).res.render("pages/hub", { user: user });
+    // If we're here, the passwords match. Add a session that stores user data and send them to the account page.
+    req.session.user = user.dataValues;
+    console.log(req.session);
+    res.redirect("/account");
   });
+  */
 });
 
 router.get("/create", async (req, res) => {
@@ -101,14 +109,14 @@ router.post("/create", (req, res) => {
 
 //hub
 router.get("/hub", async (req, res) => {
+  console.log("hub");
   console.log(req.session);
   //need to parse out session object to get username
   const user = await Users.findOne({
     where: {
-      username: req.session.user,
+      username: req.session.username,
     },
   });
-  console.log("username:", user.username);
   const district = await Districts.findOne({
     where: {
       districtid: req.session.user.districtid,
