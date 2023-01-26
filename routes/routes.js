@@ -19,31 +19,16 @@ const authenticate = (req, res, next) => {
 
 //authenticate
 
-//admin:
-router.get("/admin", (req, res) => {
-  res.render("pages/admin", {});
-});
-
 //home:
 router.get("/home", (req, res) => {
   res.render("pages/home", {});
 });
 
-//review
-router.get("/review", (req, res) => {
-  res.render("pages/review", {});
-});
-
-//you voted
-router.get("/youvoted", (req, res) => {
-  res.render("pages/youvoted", {});
-});
+//login:
 
 router.get("/login", (req, res) => {
   res.render("pages/login");
 });
-
-//login:
 
 // Log in post route -- actually checks to see if that user exists in the database.
 router.post("/login", async (req, res) => {
@@ -97,7 +82,7 @@ router.get("/hub", async (req, res) => {
 
     const position = Positions.findAll({
       where: {
-        districtid: 12,
+        districtid: req.session.user.districtid,
       },
     });
     return await Promise.all([user, district, position]);
@@ -144,6 +129,16 @@ router.get("/hub", async (req, res) => {
   });
 });
 
+//admin:
+router.get("/admin", (req, res) => {
+  res.render("pages/admin", {});
+});
+
+//you voted
+router.get("/youvoted", (req, res) => {
+  res.render("pages/youvoted", {});
+});
+
 router.get("/create", async (req, res) => {
   res.render("pages/create", {});
 });
@@ -152,7 +147,9 @@ router.get("/create", async (req, res) => {
 router.post("/create", (req, res) => {
   const { firstname, lastname, username, password, zip } = req.body;
   bcrypt.hash(password, 10, async (err, hash) => {
-    const dist = Math.floor(Math.random() * 13) + 10;
+    max = 12;
+    min = 11;
+    const dist = Math.floor(Math.random() * (max - min + 1)) + min;
     const user = await Users.create({
       firstname: firstname,
       lastname: lastname,
@@ -163,10 +160,14 @@ router.post("/create", (req, res) => {
       createdAt: new Date(),
       updatedAt: new Date(),
     });
-    res.status(200).render("pages/login");
+    req.session.user = user.dataValues;
+    res.redirect("/hub");
   });
-  req.session.user = user;
-  res.redirect("/hub");
+});
+
+//review
+router.get("/review", (req, res) => {
+  res.render("pages/review", {});
 });
 
 module.exports = router;
