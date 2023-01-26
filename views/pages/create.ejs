@@ -8,19 +8,22 @@
   <body>
     <div class="main">
       <img class="logo" src="/assets/vote_logo.svg" alt="logo" />
-      <form action="/create" method="post">
-        <label for="firstname">First name</label>
-        <input name="firstname" type="text" placeholder="Rocky" />
-        <label for="lastname">Last name</label>
-        <input name="lastname" type="text" placeholder="Raccoon" />
-        <label for="zip">ZIP code</label>
-        <input name="zip" type="text" placeholder="12345" />
-        <label for="username">user name</label>
-        <input name="username" type="text" placeholder="rraccoon1" />
-        <label for="password">password</label>
-        <input name="password" type="password" placeholder="******" />
-        <input type="submit" value="submit" />
-      </form>
+      <div class="creatediv">
+        <h1>Create Account</h1>
+        <form class="createform" action="/create" method="post">
+          <label for="firstname">First name</label>
+          <input name="firstname" type="text" placeholder="Rocky" />
+          <label for="lastname">Last name</label>
+          <input name="lastname" type="text" placeholder="Raccoon" />
+          <label for="zip">ZIP code</label>
+          <input name="zip" type="text" placeholder="12345" />
+          <label for="username">user name</label>
+          <input name="username" type="text" placeholder="rraccoon1" />
+          <label for="password">password</label>
+          <input name="password" type="password" placeholder="******" />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     </div>
   </body>
 </html>
