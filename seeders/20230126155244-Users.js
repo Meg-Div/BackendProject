@@ -3,15 +3,6 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
     await queryInterface.bulkInsert("Users", [
       {
         username: "MegFromWalnutCreek",
@@ -20,7 +11,7 @@ module.exports = {
         password: "ABC123",
         admin: true,
         zip: 94596,
-        districtid: 1,
+        districtid: 11,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -31,7 +22,7 @@ module.exports = {
         password: "password",
         admin: false,
         zip: 10002,
-        districtid: 2,
+        districtid: 12,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -39,11 +30,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete("Users", null, { restartIdentity: true });
   },
 };
