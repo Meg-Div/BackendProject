@@ -9,6 +9,9 @@ const { Users, Positions, Districts } = require("../models");
 
 //custom middleware
 
+let expirationDate = new Date();
+expirationDate.setDate(expirationDate.getDate() + 30);
+
 const authenticate = (req, res, next) => {
   if (req.session.user) {
     next();
@@ -92,51 +95,7 @@ router.get("/hub", async (req, res) => {
     user: userData[0].dataValues,
     district: userData[1].dataValues,
     position: userData[2],
-    // [
-    //   Positions {
-    //     dataValues: {
-    //       id: 12,
-    //       positiontitle: 'Commissioner',
-    //       positiondescription: "Commissioners are responsible for overseeing the county's management and administration, representing county interests at the state and federal level, participating in long-range planning, and managing the county budget and finances.",
-    //       votingcutoff: '2023-02-25 16:06:57.986 +00:00',
-    //       candidates: [Array],
-    //       districtid: 12,
-    //       createdAt: 2023-01-26T16:06:57.988Z,
-    //       updatedAt: 2023-01-26T16:06:57.988Z
-    //     },
-    //     _previousDataValues: {
-    //       id: 12,
-    //       positiontitle: 'Commissioner',
-    //       positiondescription: "Commissioners are responsible for overseeing the county's management and administration, representing county interests at the state and federal level, participating in long-range planning, and managing the county budget and finances.",
-    //       votingcutoff: '2023-02-25 16:06:57.986 +00:00',
-    //       candidates: [Array],
-    //       districtid: 12,
-    //       createdAt: 2023-01-26T16:06:57.988Z,
-    //       updatedAt: 2023-01-26T16:06:57.988Z
-    //     },
-    //     uniqno: 1,
-    //     _changed: Set(0) {},
-    //     _options: {
-    //       isNewRecord: false,
-    //       _schema: null,
-    //       _schemaDelimiter: '',
-    //       raw: true,
-    //       attributes: [Array]
-    //     },
-    //     isNewRecord: false
-    //   }
-    // ]
   });
-});
-
-//admin:
-router.get("/admin", (req, res) => {
-  res.render("pages/admin", {});
-});
-
-//you voted
-router.get("/youvoted", (req, res) => {
-  res.render("pages/youvoted", {});
 });
 
 router.get("/create", async (req, res) => {
@@ -163,6 +122,62 @@ router.post("/create", (req, res) => {
     req.session.user = user.dataValues;
     res.redirect("/hub");
   });
+});
+
+//admin:
+router.get("/admin", (req, res) => {
+  res.render("pages/admin", {});
+});
+
+router.post("/adminupdates", async (req, res) => {
+  const {
+    positiontitle,
+    positiondescription,
+    districtid,
+    candidate1,
+    candidate2,
+    candidate3,
+  } = req.body;
+  arr = [];
+  candidate1 != null ? arr.push(candidate1) : candidate1;
+  candidate2 != null ? arr.push(candidate2) : candidate2;
+  candidate2 != null ? arr.push(candidate2) : candidate3;
+
+  const user = await Users.create({
+    positiontitle: positiontitle,
+    positiondescription: positiondescription,
+    votingcutoff: expirationDate,
+    candidates: arr,
+    districtid: districtid,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
+  res.redirect("/admin");
+});
+
+//delete
+router.delete("/deleteposition", async (req, res) => {
+  const { positiontitle, districtid } = req.body;
+  const positions = await Positions.destroy({
+    where: {
+      districtid: districtid,
+      positiontitle: positiontitle,
+    },
+  });
+  res.send(`Deleted ${positiontitle} from district ${districtid}.`);
+});
+
+router.post("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy((err) => {
+      res.redirect("/login");
+    });
+  }
+});
+
+//you voted
+router.get("/youvoted", (req, res) => {
+  res.render("pages/youvoted", {});
 });
 
 //review
