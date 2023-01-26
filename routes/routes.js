@@ -82,6 +82,68 @@ router.post("/login", async (req, res) => {
   */
 });
 
+router.get("/hub", async (req, res) => {
+  const findAllData = async () => {
+    const user = Users.findOne({
+      where: {
+        username: req.session.user.username,
+      },
+    });
+    const district = Districts.findOne({
+      where: {
+        id: req.session.user.districtid,
+      },
+    });
+
+    const position = Positions.findAll({
+      where: {
+        districtid: 12,
+      },
+    });
+    return await Promise.all([user, district, position]);
+  };
+  const userData = await findAllData();
+  res.render("pages/hub", {
+    user: userData[0].dataValues,
+    district: userData[1].dataValues,
+    position: userData[2],
+    // [
+    //   Positions {
+    //     dataValues: {
+    //       id: 12,
+    //       positiontitle: 'Commissioner',
+    //       positiondescription: "Commissioners are responsible for overseeing the county's management and administration, representing county interests at the state and federal level, participating in long-range planning, and managing the county budget and finances.",
+    //       votingcutoff: '2023-02-25 16:06:57.986 +00:00',
+    //       candidates: [Array],
+    //       districtid: 12,
+    //       createdAt: 2023-01-26T16:06:57.988Z,
+    //       updatedAt: 2023-01-26T16:06:57.988Z
+    //     },
+    //     _previousDataValues: {
+    //       id: 12,
+    //       positiontitle: 'Commissioner',
+    //       positiondescription: "Commissioners are responsible for overseeing the county's management and administration, representing county interests at the state and federal level, participating in long-range planning, and managing the county budget and finances.",
+    //       votingcutoff: '2023-02-25 16:06:57.986 +00:00',
+    //       candidates: [Array],
+    //       districtid: 12,
+    //       createdAt: 2023-01-26T16:06:57.988Z,
+    //       updatedAt: 2023-01-26T16:06:57.988Z
+    //     },
+    //     uniqno: 1,
+    //     _changed: Set(0) {},
+    //     _options: {
+    //       isNewRecord: false,
+    //       _schema: null,
+    //       _schemaDelimiter: '',
+    //       raw: true,
+    //       attributes: [Array]
+    //     },
+    //     isNewRecord: false
+    //   }
+    // ]
+  });
+});
+
 router.get("/create", async (req, res) => {
   res.render("pages/create", {});
 });
@@ -105,33 +167,6 @@ router.post("/create", (req, res) => {
   });
   req.session.user = user;
   res.redirect("/hub");
-});
-
-//hub
-router.get("/hub", async (req, res) => {
-  console.log("hub");
-  console.log(req.session);
-  //need to parse out session object to get username
-  const user = await Users.findOne({
-    where: {
-      username: req.session.username,
-    },
-  });
-  const district = await Districts.findOne({
-    where: {
-      districtid: req.session.user.districtid,
-    },
-  });
-  const position = await Positions.findOne({
-    where: {
-      districtid: req.session.user.districtid,
-    },
-  });
-  res.render("pages/hub", {
-    user: user,
-    district: district,
-    position: position,
-  });
 });
 
 module.exports = router;

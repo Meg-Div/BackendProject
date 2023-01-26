@@ -1,11 +1,10 @@
 <form action="/review" method="post">
   <div class="positioncard">
-    <h1><%=position.title%></h1>
-    <p><%=position.description%></p>
+    <% position.forEach((candidate)=>{ %>
     <div class="positionbuttons">
-      <%position.candidates.forEach((candidate,index)=>{%>
-        <input name="<%=index%>" type="button"><%=candidate%></input>
+        <input type="button"><%=candidate.dataValues.positiontitle%></input>
+      </div>
       <%})%>
-    </div>
   </div>
 </form>
+
