@@ -6,5 +6,42 @@
   </head>
   <body>
     <h1>Admin Panel</h1>
+    <div class="positiondiv">
+      <h1>Position</h1>
+      <!-- create / update - how to add multiple methods to submit -->
+      <form action="/create" method="post">
+        <label for="districtid">District ID</label>
+        <select name="id" id="districtselect">
+          <option value="11">District 11</option>
+          <option value="12">District 12</option>
+        </select>
+        <label for="positiontitle">Position Title</label>
+        <input name="positiontitle" type="text" placeholder="Mayor" />
+        <label for="positiondescription">Position Description</label>
+        <textarea
+          name="message"
+          placeholder="Enter a detailed description here"
+        ></textarea>
+        <input type="submit" value="Add Position" />
+      </form>
+    </div>
+    <div class="candidatediv">
+      <h1>Candidates</h1>
+      <form action="/create" method="post">
+        <label for="districtid">District</label>
+        <select name="id" id="districtselect">
+          <option value="11">District 11</option>
+          <option value="12">District 12</option>
+        </select>
+        <label for="positiontitle">Position</label>
+        <select name="id" id="districtselect">
+          <!-- where district id = above input (req.body.id?) forEach position populate <select/> for position  -->
+          <option value="positiontitle"><%=position.positiontitle%></option>
+        </select>
+        <label for="candidates">Candidate Name</label>
+        <input name="candidates" type="text" placeholder="Raccoon" />
+        <input type="submit" value="Add Candidate" />
+      </form>
+    </div>
   </body>
 </html>
