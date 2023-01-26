@@ -8,17 +8,23 @@
   <body>
     <div class="main">
       <img class="logo" src="/assets/vote_logo.svg" alt="logo" />
-      <form action="/login" method="post">
-        <label for="username">user name</label>
-        <input name="username" type="text" placeholder="username" />
-        <label for="password">password</label>
-        <input name="password" type="password" placeholder="password" />
-        <input type="submit" value="submit" />
-      </form>
-      <form action="/create" method="get">
-        <h1>Voting for the first time?</h1>
-        <input type="submit" name="Create Account" value="submit" />
-      </form>
+      <div class="loginmain">
+        <div class="loginform">
+          <form action="/login" method="post">
+            <label for="username">user name</label>
+            <input name="username" type="text" placeholder="username" />
+            <label for="password">password</label>
+            <input name="password" type="password" placeholder="password" />
+            <input type="submit" value="submit" />
+          </form>
+        </div>
+        <div class="createquerydiv">
+          <form action="/create" method="get">
+            <h1 class="createquery">Voting for the first time?</h1>
+            <input type="submit" name="Create Account" value="Create Account" />
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>

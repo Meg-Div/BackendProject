@@ -46,13 +46,98 @@ body {
   font-weight: 700;
   font-style: normal;
   color: #e2dddb;
-  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 60px auto;
+  align-items: center;
 }
 
 .logo {
   max-width: 150px;
+  margin: auto;
 }
 
 .vote {
   max-width: 300px;
+}
+
+label {
+  font-family: "dunbar-tall", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+input[type="submit"] {
+  background-color: #0c0024;
+  color: #e2dddb;
+  border-style: none;
+  font-family: "dunbar-tall", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: 3px;
+  width: fit-content;
+  padding: 6px 10px;
+}
+
+input[type="text"] {
+  border-style: none;
+  padding: 6px 0px;
+}
+
+input[type="password"] {
+  border-style: none;
+  padding: 6px 0px;
+}
+
+/* LOGIN */
+.createquery {
+  font-family: "dunbar-tall", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 14px;
+}
+.loginmain {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  gap: 10px;
+  margin: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  gap: 10px;
+  margin: auto;
+}
+
+.createquerydiv {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  gap: 10px;
+  margin: auto;
+}
+
+/* CREATE */
+.creatediv {
+  margin-top: 25px;
+}
+
+.createform {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  gap: 10px;
+  margin: auto;
 }
