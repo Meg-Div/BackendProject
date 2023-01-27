@@ -9,7 +9,7 @@
     <div class="positiondiv">
       <h1>Positions</h1>
       <!-- add / update - how to add multiple methods to submit -->
-      <form action="/adminupdates" method="post">
+      <form>
         <label for="districtid">District ID</label>
         <select name="id" id="districtselect">
           <!-- Need to give this key a value? -->
@@ -17,7 +17,14 @@
           <option value="12">District 12</option>
         </select>
         <label for="positiontitle">Position Title</label>
-        <input name="positiontitle" type="text" placeholder="Mayor" />
+        <select name="positiontitle" id="positiontitle">
+          <option value="Mayor">Mayor</option> 
+          <option value="Commissioner">Commissioner</option>
+          <option value="Chancellor">Chancellor</option>
+          <option value="Registrar">Registrar</option>
+          <option value="Governor">Governor</option>
+          <option value="County Mayor">County Mayor</option>
+          <option value="Comptroller">Comptroller</option>
         <label for="positiondescription">Position Description</label>
         <textarea
           name="message"
@@ -25,7 +32,8 @@
         ></textarea>
         <label for="candidates">Candidate Name</label>
         <input name="candidates" type="text" placeholder="Raccoon" />
-        <input type="submit" value="Add Position" />
+        <input type="submit" formaction="/adminupdates" formmethod="post" value="Add Position" />
+        <input type="submit" formaction="/update" formmethod="put" value="Update Position" />
       </form>
     </div>
     <div class="deleteposdiv">
@@ -36,15 +44,15 @@
           <option value="11">District 11</option>
           <option value="12">District 12</option>
         </select>
-        <label for="positiontitle">Position</label>
-        <select name="id" id="districtselect">
-          <% position.forEach((pos)=>{
-            where:{
-              id: id
-            }%>
-            <!-- logic to get distric id from above dropdown -->
-          <option value="positiontitle"><%=pos.positiontitle%></option>
-          <%})>
+        <label for="positiontitle">Position Title</label>
+        <select name="positiontitle" id="positiontitle">
+          <option value="Mayor">Mayor</option> 
+          <option value="Commissioner">Commissioner</option>
+          <option value="Chancellor">Chancellor</option>
+          <option value="Registrar">Registrar</option>
+          <option value="Governor">Governor</option>
+          <option value="County Mayor">County Mayor</option>
+          <option value="Comptroller">Comptroller</option>
         <input type="submit" value="Delete Position" />
       </form>
     </div>
