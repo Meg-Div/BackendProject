@@ -132,7 +132,7 @@ router.get("/admin", authenticate, authenticateAdmin, (req, res) => {
   res.render("pages/admin", {});
 });
 
-router.post("/adminupdates", async (req, res) => {
+router.post("/adminadd", async (req, res) => {
   const {
     positiontitle,
     positiondescription,
@@ -142,25 +142,57 @@ router.post("/adminupdates", async (req, res) => {
     candidate3,
   } = req.body;
   arr = [];
-  candidate1 != null ? arr.push(candidate1) : candidate1;
-  candidate2 != null ? arr.push(candidate2) : candidate2;
-  candidate2 != null ? arr.push(candidate2) : candidate3;
+  candidate1 != "" ? arr.push(candidate1) : candidate1;
+  candidate2 != "" ? arr.push(candidate2) : candidate2;
+  candidate3 != "" ? arr.push(candidate3) : candidate3;
 
-  const user = await Users.create({
+  const position = await Positions.create({
     positiontitle: positiontitle,
     positiondescription: positiondescription,
-    votingcutoff: expirationDate,
+    votingcutoff: JSON.stringify(expirationDate),
     candidates: arr,
     districtid: districtid,
-    admin: true,
     createdAt: new Date(),
     updatedAt: new Date(),
   });
   res.redirect("/admin");
 });
 
+router.post("/adminupdate", async (req, res) => {
+  const {
+    positiontitle,
+    positiondescription,
+    districtid,
+    candidate1,
+    candidate2,
+    candidate3,
+  } = req.body;
+  arr = [];
+  candidate1 != "" ? arr.push(candidate1) : candidate1;
+  candidate2 != "" ? arr.push(candidate2) : candidate2;
+  candidate3 != "" ? arr.push(candidate3) : candidate3;
+
+  const position = await Positions.update(
+    {
+      positiontitle: positiontitle,
+      positiondescription: positiondescription,
+      votingcutoff: JSON.stringify(expirationDate),
+      candidates: arr,
+      districtid: districtid,
+      updatedAt: new Date(),
+    },
+    {
+      where: {
+        districtid: districtid,
+        positiontitle: positiontitle,
+      },
+    }
+  );
+  res.redirect("/admin");
+});
+
 //delete
-router.delete("/deleteposition", async (req, res) => {
+router.post("/deleteposition", async (req, res) => {
   const { positiontitle, districtid } = req.body;
   const positions = await Positions.destroy({
     where: {

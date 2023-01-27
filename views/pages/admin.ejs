@@ -11,7 +11,7 @@
       <!-- add / update - how to add multiple methods to submit -->
       <form>
         <label for="districtid">District ID</label>
-        <select name="id" id="districtselect">
+        <select name="districtid" id="districtselect">
           <!-- Need to give this key a value? -->
           <option value="11">District 11</option> 
           <option value="12">District 12</option>
@@ -27,22 +27,22 @@
           <option value="Comptroller">Comptroller</option>
         <label for="positiondescription">Position Description</label>
         <textarea
-          name="message"
+          name="positiondescription"
           placeholder="Enter a detailed description here"
         ></textarea>
         <label for="candidates">Candidates</label>
         <input name="candidate1" type="text" placeholder="Raccoon" />
         <input name="candidate2" type="text" placeholder="Donkey" />
         <input name="candidate3" type="text" placeholder="Crow" />
-        <input type="submit" formaction="/adminupdates" formmethod="post" value="Add Position" />
-        <input type="submit" formaction="/update" formmethod="put" value="Update Position" />
+        <input type="submit" formaction="/adminadd" formmethod="post" value="Add Position" />
+        <input type="submit" formaction="/adminupdate" formmethod="post" value="Update Position" />
       </form>
     </div>
     <div class="deleteposdiv">
       <h1>Delete Position</h1>
       <form action="/deleteposition" method="post">
         <label for="districtid">District</label>
-        <select name="id" id="districtselect">
+        <select name="districtid" id="districtselect">
           <option value="11">District 11</option>
           <option value="12">District 12</option>
         </select>
