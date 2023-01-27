@@ -6,5 +6,50 @@
   </head>
   <body>
     <h1>Admin Panel</h1>
+    <div class="positiondiv">
+      <h1>Positions</h1>
+      <!-- add / update - how to add multiple methods to submit -->
+      <form action="/adminupdates" method="post">
+        <label for="districtid">District ID</label>
+        <select name="id" id="districtselect">
+          <!-- Need to give this key a value? -->
+          <option value="11">District 11</option> 
+          <option value="12">District 12</option>
+        </select>
+        <label for="positiontitle">Position Title</label>
+        <input name="positiontitle" type="text" placeholder="Mayor" />
+        <label for="positiondescription">Position Description</label>
+        <textarea
+          name="message"
+          placeholder="Enter a detailed description here"
+        ></textarea>
+        <label for="candidates">Candidate Name</label>
+        <input name="candidates" type="text" placeholder="Raccoon" />
+        <input type="submit" value="Add Position" />
+      </form>
+    </div>
+    <div class="deleteposdiv">
+      <h1>Delete Position</h1>
+      <form action="/deleteposition" method="post">
+        <label for="districtid">District</label>
+        <select name="id" id="districtselect">
+          <option value="11">District 11</option>
+          <option value="12">District 12</option>
+        </select>
+        <label for="positiontitle">Position</label>
+        <select name="id" id="districtselect">
+          <% position.forEach((pos)=>{
+            where:{
+              id: id
+            }%>
+            <!-- logic to get distric id from above dropdown -->
+          <option value="positiontitle"><%=pos.positiontitle%></option>
+          <%})>
+        <input type="submit" value="Delete Position" />
+      </form>
+    </div>
+    <form action="/logout" method="post"></form>
+      <input type="submit" value="Logout">
+    </form>
   </body>
 </html>
