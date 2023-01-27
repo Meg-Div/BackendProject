@@ -51,24 +51,26 @@ router.post("/login", async (req, res) => {
   });
   // create error messages:
   if (!user) {
-    res.render("pages/login", { modal: "Username not found." });
+    res.render("pages/login");
     return;
   }
-  // comparing passwords
-  bcrypt.compare(password, user.password, (err, result) => {
-    if (err) {
-      console.log(10);
-      res.render("pages/login", { modal: "Server error. Please try again." });
-      return;
-    }
-    if (!result) {
-      console.log(12);
-      res.render("pages/login", { modal: "Incorrect password. Try again." });
-      return;
-    }
-    req.session.user = user.dataValues;
-    user.admin == true ? res.redirect("/admin") : res.redirect("/hub");
-  });
+  if (user) {
+    // comparing passwords
+    bcrypt.compare(password, user.password, (err, result) => {
+      if (err) {
+        console.log(10);
+        res.render("pages/login");
+        return;
+      }
+      if (!result) {
+        console.log(12);
+        res.render("pages/login");
+        return;
+      }
+      req.session.user = user.dataValues;
+      user.admin == true ? res.redirect("/admin") : res.redirect("/hub");
+    });
+  }
 });
 
 router.get("/hub", authenticate, async (req, res) => {
@@ -130,7 +132,7 @@ router.get("/admin", authenticate, authenticateAdmin, (req, res) => {
   res.render("pages/admin", {});
 });
 
-router.post("/adminupdates", async (req, res) => {
+router.post("/adminadd", async (req, res) => {
   const {
     positiontitle,
     positiondescription,
@@ -140,25 +142,57 @@ router.post("/adminupdates", async (req, res) => {
     candidate3,
   } = req.body;
   arr = [];
-  candidate1 != null ? arr.push(candidate1) : candidate1;
-  candidate2 != null ? arr.push(candidate2) : candidate2;
-  candidate2 != null ? arr.push(candidate2) : candidate3;
+  candidate1 != "" ? arr.push(candidate1) : candidate1;
+  candidate2 != "" ? arr.push(candidate2) : candidate2;
+  candidate3 != "" ? arr.push(candidate3) : candidate3;
 
-  const user = await Users.create({
+  const position = await Positions.create({
     positiontitle: positiontitle,
     positiondescription: positiondescription,
-    votingcutoff: expirationDate,
+    votingcutoff: JSON.stringify(expirationDate),
     candidates: arr,
     districtid: districtid,
-    admin: true,
     createdAt: new Date(),
     updatedAt: new Date(),
   });
   res.redirect("/admin");
 });
 
+router.post("/adminupdate", async (req, res) => {
+  const {
+    positiontitle,
+    positiondescription,
+    districtid,
+    candidate1,
+    candidate2,
+    candidate3,
+  } = req.body;
+  arr = [];
+  candidate1 != "" ? arr.push(candidate1) : candidate1;
+  candidate2 != "" ? arr.push(candidate2) : candidate2;
+  candidate3 != "" ? arr.push(candidate3) : candidate3;
+
+  const position = await Positions.update(
+    {
+      positiontitle: positiontitle,
+      positiondescription: positiondescription,
+      votingcutoff: JSON.stringify(expirationDate),
+      candidates: arr,
+      districtid: districtid,
+      updatedAt: new Date(),
+    },
+    {
+      where: {
+        districtid: districtid,
+        positiontitle: positiontitle,
+      },
+    }
+  );
+  res.redirect("/admin");
+});
+
 //delete
-router.delete("/deleteposition", async (req, res) => {
+router.post("/deleteposition", async (req, res) => {
   const { positiontitle, districtid } = req.body;
   const positions = await Positions.destroy({
     where: {
