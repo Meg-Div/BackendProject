@@ -20,6 +20,14 @@ const authenticate = (req, res, next) => {
   }
 };
 
+const authenticateAdmin = (req, res, next) => {
+  if (req.session.user.admin == true) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+};
+
 //authenticate
 
 //home:
@@ -116,7 +124,7 @@ router.post("/create", (req, res) => {
 });
 
 //admin:
-router.get("/admin", authenticate, (req, res) => {
+router.get("/admin", authenticate, authenticateAdmin, (req, res) => {
   res.render("pages/admin", {});
 });
 
@@ -160,6 +168,8 @@ router.delete("/deleteposition", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
+  console.log(12);
+  console.log(req.session);
   if (req.session) {
     req.session.destroy((err) => {
       res.redirect("/login");
