@@ -65,6 +65,7 @@ body {
 }
 
 .vote {
+  min-width: 100px;
   max-width: 300px;
 }
 
@@ -113,7 +114,7 @@ input[type="password"] {
   margin: auto;
 }
 
-.form {
+.loginform {
   display: flex;
   flex-direction: column;
   max-width: 200px;
@@ -140,4 +141,49 @@ input[type="password"] {
   max-width: 200px;
   gap: 10px;
   margin: auto;
+}
+
+/* HUB */
+
+/* HUB POSITION CARDS */
+.positioncard {
+  background-color: #e2dddb;
+  width: 400px;
+  height: fit-content;
+  padding: 15px;
+}
+
+.positiontitle {
+  color: #0c0024;
+}
+
+.positiontitle h1 {
+  font-size: 20px;
+  border-bottom: 2px solid #531b6c;
+}
+
+.positiontitle p {
+  font-family: "dunbar-text", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 12px;
+}
+
+.positionbuttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: fit-content;
+}
+
+.positionbuttons button {
+  background-color: #0c0024;
+  color: #e2dddb;
+  border-style: none;
+  font-family: "dunbar-tall", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: 3px;
+  width: fit-content;
+  padding: 6px 10px;
 }
