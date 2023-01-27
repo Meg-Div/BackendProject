@@ -57,10 +57,12 @@ router.post("/login", async (req, res) => {
   // comparing passwords
   bcrypt.compare(password, user.password, (err, result) => {
     if (err) {
+      console.log(10);
       res.render("pages/login", { modal: "Server error. Please try again." });
       return;
     }
     if (!result) {
+      console.log(12);
       res.render("pages/login", { modal: "Incorrect password. Try again." });
       return;
     }
