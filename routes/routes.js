@@ -33,7 +33,6 @@ router.get("/login", (req, res) => {
   res.render("pages/login");
 });
 
-// Log in post route -- actually checks to see if that user exists in the database.
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   // getting the user from the database
@@ -42,32 +41,24 @@ router.post("/login", async (req, res) => {
       username: username,
     },
   });
-  // checking username
+  // create error messages:
   if (!user) {
     res.render("pages/login", { modal: "Username not found." });
     return;
   }
-  if (user.password == password) {
-    req.session.user = user.dataValues;
-    console.log(req.session);
-    res.redirect("/hub");
-  }
-  /* bcrypt.compare(password, user.password, (err, result) => {
+  // comparing passwords
+  bcrypt.compare(password, user.password, (err, result) => {
     if (err) {
       res.render("pages/login", { modal: "Server error. Please try again." });
       return;
     }
     if (!result) {
-      // result will be true if the passwords match
       res.render("pages/login", { modal: "Incorrect password. Try again." });
       return;
     }
-    // If we're here, the passwords match. Add a session that stores user data and send them to the account page.
     req.session.user = user.dataValues;
-    console.log(req.session);
-    res.redirect("/account");
+    res.redirect("/hub");
   });
-  */
 });
 
 router.get("/hub", async (req, res) => {
@@ -149,6 +140,7 @@ router.post("/adminupdates", async (req, res) => {
     votingcutoff: expirationDate,
     candidates: arr,
     districtid: districtid,
+    admin: true,
     createdAt: new Date(),
     updatedAt: new Date(),
   });
