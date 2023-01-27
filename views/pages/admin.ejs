@@ -4,62 +4,76 @@
     <%- include('../partials/head.ejs'); %>
     <title>Admin</title>
   </head>
-  <body>
-    <h1>Admin Panel</h1>
-    <div class="positiondiv">
-      <h1>Positions</h1>
-      <!-- add / update - how to add multiple methods to submit -->
-      <form>
-        <label for="districtid">District ID</label>
-        <select name="districtid" id="districtselect">
-          <!-- Need to give this key a value? -->
-          <option value="11">District 11</option> 
-          <option value="12">District 12</option>
-        </select>
-        <label for="positiontitle">Position Title</label>
-        <select name="positiontitle" id="positiontitle">
-          <option value="Mayor">Mayor</option> 
-          <option value="Commissioner">Commissioner</option>
-          <option value="Chancellor">Chancellor</option>
-          <option value="Registrar">Registrar</option>
-          <option value="Governor">Governor</option>
-          <option value="County Mayor">County Mayor</option>
-          <option value="Comptroller">Comptroller</option>
-        <label for="positiondescription">Position Description</label>
-        <textarea
-          name="positiondescription"
-          placeholder="Enter a detailed description here"
-        ></textarea>
-        <label for="candidates">Candidates</label>
-        <input name="candidate1" type="text" placeholder="Raccoon" />
-        <input name="candidate2" type="text" placeholder="Donkey" />
-        <input name="candidate3" type="text" placeholder="Crow" />
-        <input type="submit" formaction="/adminadd" formmethod="post" value="Add Position" />
-        <input type="submit" formaction="/adminupdate" formmethod="post" value="Update Position" />
-      </form>
+    <body>
+      <div class="main">
+
+        <div class="admintop">
+          <img id="adminlogo" src="/assets/vote_logo.svg" alt="vote">
+          <h1>Admin Dashboard</h1>
+          <form action="/hub" method="get">
+            <input type="submit" value="Hub">
+          </form>
+          <form action="/logout" method="post">
+            <input type="submit" value="Logout">
+          </form>
+        </div>
+        <div class="admin">
+          <div class="positiondiv">
+            <h1>Positions</h1>
+            <!-- add / update - how to add multiple methods to submit -->
+            <form class="addupdate">
+              <label for="districtid">District ID</label>
+              <select name="districtid" id="select">
+                <option value="" disabled selected>Select a District</option>
+                <option value="11">District 11</option> 
+                <option value="12">District 12</option>
+              </select>
+              <label for="positiontitle">Position Title</label>
+              <select name="positiontitle" id="select">
+                <option value="" disabled selected>Select a Position</option>
+                <option value="Mayor">Mayor</option> 
+                <option value="Commissioner">Commissioner</option>
+                <option value="Chancellor">Chancellor</option>
+                <option value="Registrar">Registrar</option>
+                <option value="Governor">Governor</option>
+                <option value="County Mayor">County Mayor</option>
+                <option value="Comptroller">Comptroller</option>
+              <label for="positiondescription">Position Description</label>
+              <textarea rows="5" id="textarea"
+                name="positiondescription"
+                placeholder="Enter a detailed description here"
+              ></textarea>
+              <label for="candidates">Candidates</label>
+              <input name="candidate1" type="text" placeholder="Raccoon" />
+              <input name="candidate2" type="text" placeholder="Donkey" />
+              <input name="candidate3" type="text" placeholder="Crow" />
+              <input type="submit" formaction="/adminadd" formmethod="post" value="Add Position" />
+              <input type="submit" formaction="/adminupdate" formmethod="post" value="Update Position" />
+          </form>
+        </div>
+        <div class="deleteposdiv">
+          <h1>Delete Position</h1>
+          <form class="delete" action="/deleteposition" method="post">
+            <label for="districtid">District</label>
+            <select name="districtid" id="select">
+              <option value="" disabled selected>Select a District</option>
+              <option value="11">District 11</option>
+              <option value="12">District 12</option>
+            </select>
+            <label for="positiontitle">Position Title</label>
+            <select name="positiontitle" id="select">
+              <option value="" disabled selected>Select a Position</option>
+              <option value="Mayor">Mayor</option> 
+              <option value="Commissioner">Commissioner</option>
+              <option value="Chancellor">Chancellor</option>
+              <option value="Registrar">Registrar</option>
+              <option value="Governor">Governor</option>
+              <option value="County Mayor">County Mayor</option>
+              <option value="Comptroller">Comptroller</option>
+            <input type="submit" value="Delete Position" />
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="deleteposdiv">
-      <h1>Delete Position</h1>
-      <form action="/deleteposition" method="post">
-        <label for="districtid">District</label>
-        <select name="districtid" id="districtselect">
-          <option value="11">District 11</option>
-          <option value="12">District 12</option>
-        </select>
-        <label for="positiontitle">Position Title</label>
-        <select name="positiontitle" id="positiontitle">
-          <option value="Mayor">Mayor</option> 
-          <option value="Commissioner">Commissioner</option>
-          <option value="Chancellor">Chancellor</option>
-          <option value="Registrar">Registrar</option>
-          <option value="Governor">Governor</option>
-          <option value="County Mayor">County Mayor</option>
-          <option value="Comptroller">Comptroller</option>
-        <input type="submit" value="Delete Position" />
-      </form>
-    </div>
-    <form action="/logout" method="post">
-      <input type="submit" value="Logout">
-    </form>
   </body>
 </html>

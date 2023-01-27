@@ -86,18 +86,36 @@ input[type="submit"] {
   font-weight: 800;
   font-style: normal;
   letter-spacing: 3px;
-  width: fit-content;
   padding: 6px 10px;
+  width: fit-content;
 }
 
 input[type="text"] {
   border-style: none;
-  padding: 6px 0px;
+  padding: 6px;
+  box-sizing: border-box;
+  width: 300px;
+  font-family: "dunbar-text", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+input[type="text"]::placeholder {
+  color: #b8b3b1;
 }
 
 input[type="password"] {
   border-style: none;
-  padding: 6px 0px;
+  padding: 6px;
+  font-family: "dunbar-text", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  box-sizing: border-box;
+  width: 300px;
+}
+
+input[type="password"]::placeholder {
+  color: #b8b3b1;
 }
 
 /* LOGIN */
@@ -110,7 +128,7 @@ input[type="password"] {
 .loginmain {
   display: flex;
   flex-direction: column;
-  max-width: 200px;
+  max-width: fit-content;
   gap: 10px;
   margin: auto;
 }
@@ -118,9 +136,7 @@ input[type="password"] {
 .loginform {
   display: flex;
   flex-direction: column;
-  max-width: 200px;
   gap: 10px;
-  margin: auto;
 }
 
 .createquerydiv {
@@ -213,11 +229,77 @@ input[type="password"] {
 }
 
 /* ADMIN */
+.admin {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+#adminlogo {
+  height: 50px;
+}
+
+.admin h1 {
+  color: #0c0024;
+  font-size: 25px;
+}
+
+.admintop {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+  border-bottom: 2px solid #0c0024;
+}
 
 .positiondiv {
-  color: #e2dddb;
+  display: flex;
+  flex-direction: column;
 }
 
-.deleteposdiv {
-  color: #e2dddb;
+.addupdate {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
+.deletediv {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#select {
+  font-family: "dunbar-text", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  border-style: none;
+  padding: 6px;
+  box-sizing: border-box;
+  width: 300px;
+}
+
+#textarea {
+  font-family: "dunbar-text", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  border-style: none;
+  box-sizing: border-box;
+  width: 300px;
+  padding: 6px;
+}
+
+#textarea::placeholder {
+  color: #b8b3b1;
+}
+
+/* .candidate1{
+}
+
+.candidatebutt{
+
+} */
