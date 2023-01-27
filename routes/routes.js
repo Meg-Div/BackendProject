@@ -57,11 +57,11 @@ router.post("/login", async (req, res) => {
       return;
     }
     req.session.user = user.dataValues;
-    res.redirect("/hub");
+    user.admin == true ? res.redirect("/admin") : res.redirect("/hub");
   });
 });
 
-router.get("/hub", async (req, res) => {
+router.get("/hub", authenticate, async (req, res) => {
   const findAllData = async () => {
     const user = Users.findOne({
       where: {
@@ -116,7 +116,7 @@ router.post("/create", (req, res) => {
 });
 
 //admin:
-router.get("/admin", (req, res) => {
+router.get("/admin", authenticate, (req, res) => {
   res.render("pages/admin", {});
 });
 
@@ -168,7 +168,7 @@ router.post("/logout", (req, res) => {
 });
 
 //you voted
-router.get("/youvoted", (req, res) => {
+router.get("/youvoted", authenticate, (req, res) => {
   res.render("pages/youvoted", {});
 });
 
