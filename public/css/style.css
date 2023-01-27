@@ -55,6 +55,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 15px;
   margin: 60px auto;
   align-items: center;
 }
@@ -144,8 +145,30 @@ input[type="password"] {
 }
 
 /* HUB */
+.districtinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.districtinfo h1 {
+  margin: 0px;
+}
+.districtinfo h2 {
+  margin: 0px;
+}
+.districtinfo h3 {
+  margin: 0px;
+}
 
 /* HUB POSITION CARDS */
+.positions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .positioncard {
   background-color: #e2dddb;
   width: 400px;
@@ -159,7 +182,6 @@ input[type="password"] {
 
 .positiontitle h1 {
   font-size: 20px;
-  border-bottom: 2px solid #531b6c;
 }
 
 .positiontitle p {
@@ -167,6 +189,8 @@ input[type="password"] {
   font-weight: 500;
   font-style: normal;
   font-size: 12px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #531b6c;
 }
 
 .positionbuttons {
@@ -186,4 +210,14 @@ input[type="password"] {
   letter-spacing: 3px;
   width: fit-content;
   padding: 6px 10px;
+}
+
+/* ADMIN */
+
+.positiondiv {
+  color: #e2dddb;
+}
+
+.deleteposdiv {
+  color: #e2dddb;
 }
