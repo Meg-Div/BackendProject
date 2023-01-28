@@ -164,18 +164,25 @@ input[type="password"]::placeholder {
 .districtinfo {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   margin-bottom: 15px;
 }
 
 .districtinfo h1 {
+  font-size: 20px;
   margin: 0px;
 }
 .districtinfo h2 {
+  font-family: "dunbar-tall", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
   margin: 0px;
 }
-.districtinfo h3 {
-  margin: 0px;
+
+.hubbuttons {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
 }
 
 /* HUB POSITION CARDS */
@@ -197,7 +204,8 @@ input[type="password"]::placeholder {
 }
 
 .positiontitle h1 {
-  font-size: 20px;
+  align-items: center;
+  font-size: 16px;
 }
 
 .positiontitle p {
@@ -211,13 +219,11 @@ input[type="password"]::placeholder {
 
 .positionbuttons {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: fit-content;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .positionbuttons button {
-  background-color: #0c0024;
   color: #e2dddb;
   border-style: none;
   font-family: "dunbar-tall", sans-serif;
@@ -297,9 +303,12 @@ input[type="password"]::placeholder {
   color: #b8b3b1;
 }
 
-/* .candidate1{
+.candidatebutt1 {
+  background-color: #d63c3c;
 }
-
-.candidatebutt{
-
-} */
+.candidatebutt2 {
+  background-color: #531b6c;
+}
+.candidatebutt3 {
+  background-color: #008cbd;
+}

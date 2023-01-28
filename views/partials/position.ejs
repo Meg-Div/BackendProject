@@ -1,17 +1,20 @@
 <form action="/review" method="post">
   <div class="positioncard">
     <% position.forEach((pos)=>{ %>
-    <div class="positiontitle">
+      <div class="positiontitle">
         <h1"><%=pos.dataValues.positiontitle%></h1>
         <p><%=pos.dataValues.positiondescription%></p>
-        <div class="positionbuttons">
+        <div class="candidatestitle">
           <h1>Candidates</h1>
-        <% pos.dataValues.candidates.forEach((can)=>{ %>
-          <button class="candidatebutt"><%=can%></button>
-          <%})%>
+        </div>
+        <div class="positionbuttons">
+          <button class="candidatebutt1"><%=pos.dataValues.candidates[0]%></button>
+          <button class="candidatebutt2"><%=pos.dataValues.candidates[1]%></button>
+          <button class="candidatebutt3"><%=pos.dataValues.candidates[2]%></button>
+        </div>
       </div>
-      </div>
-      <%})%>
+    <%})%>
   </div>
 </form>
 
+<!-- Change the for each loop to be just the index of the candidate and change the colors in css to blue purple red -->
