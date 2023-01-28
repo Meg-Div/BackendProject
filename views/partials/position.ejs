@@ -7,7 +7,11 @@
         <div class="positionbuttons">
           <h1>Candidates</h1>
         <% pos.dataValues.candidates.forEach((can)=>{ %>
+<<<<<<< Updated upstream
           <button class="candidatebutt"><%=can%></button>
+=======
+          <button><%=can[0]%></button>
+>>>>>>> Stashed changes
           <%})%>
       </div>
       </div>
@@ -15,3 +19,4 @@
   </div>
 </form>
 
+<!-- Change the for each loop to be just the index of the candidate and change the colors in css to blue purple red -->
