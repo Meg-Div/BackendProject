@@ -3,11 +3,17 @@
 
 ---
 <h2 align="center">Creators:</h2>
-<p align="center">Peter Riesing (BLOG, GITHUB) <br> and <br> Meg Divringi (BLOG, GITHUB) </p>
-
-<br>Peter and Meg created Vote while enrolled within the Web Developer program at DigitalCrafts. 
+<p align="center">
+Peter Riesing 
+&nbsp; & &nbsp;
+Meg Divringi 
 <br>
-<br>Peter’s focus was primarily on UX design and frontend and Meg’s focus was primarily on Project Management and the backend.
+(<a href="https://github.com">Blog</a>, <a href="https://github.com">GitHub</a>) 
+&ensp; &ensp;
+(<a href="https://dev.to/megdiv">Blog</a>, <a href="https://github.com/Meg-Div">GitHub</a>)
+</p>
+<p align="center">Peter and Meg created Vote while enrolled within the Web Developer program at DigitalCrafts. </p>
+<p align="center">Peter’s focus was primarily on UX design and frontend and Meg’s focus was primarily on Project Management and the backend.</p>
 
 ---
 <h2 align="center">Languages/ Technologies:</h2>
@@ -24,7 +30,7 @@ Javascript
 
 ---
 <h2 align="center">Use/View:</h2>
-To view the project, head to their portfolios: (Peter’s Portfolio, Meg’s Portfolio)
+To view the project, head to their portfolios: (Peter’s Portfolio, Meg’s Portfolio).
 <br><br>
 To use the project, follow the steps below:
 <br>

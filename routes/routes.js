@@ -9,9 +9,6 @@ const { Users, Positions, Districts } = require("../models");
 
 //custom middleware
 
-let expirationDate = new Date();
-expirationDate.setDate(expirationDate.getDate() + 30);
-
 const authenticate = (req, res, next) => {
   if (req.session.user) {
     next();
@@ -171,7 +168,10 @@ router.post("/adminupdate", async (req, res) => {
   candidate1 != "" ? arr.push(candidate1) : candidate1;
   candidate2 != "" ? arr.push(candidate2) : candidate2;
   candidate3 != "" ? arr.push(candidate3) : candidate3;
+  let expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + 30);
 
+  console.log(expirationDate);
   const position = await Positions.update(
     {
       positiontitle: positiontitle,
