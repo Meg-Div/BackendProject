@@ -13,7 +13,7 @@ Meg Divringi
 (<a href="https://dev.to/megdiv">Blog</a>, <a href="https://github.com/Meg-Div">GitHub</a>)
 </p>
 <p align="center">Peter and Meg created Vote while enrolled within the Web Developer program at DigitalCrafts. </p>
-<p align="center">Peter’s focus was primarily on UX design and frontend and Meg’s focus was primarily on Project Management and the backend.</p>
+<p align="center">Peter’s focus was primarily on UX Design and Frontend and Meg’s focus was primarily on Project Management and Backend.</p>
 
 ---
 <h2 align="center">Languages/ Technologies:</h2>
@@ -45,6 +45,33 @@ To use the project, follow the steps below:
 7. Create a file called .gitignore (this will secure any files included by not uploading them to GitHub)
 8. Add config.json to .gitignore (this will prevent your password from being visible)
 9. Add in your ElephantSQL information in the below format:
-<br>[add in picture of format]
-10. Run your server by typing in ‘node index.js’ to the terminal:
+<br>
+{ 
+<br>
+&ensp; &ensp; "development": { <br>
+&ensp; &ensp;&ensp; &ensp; "username": username,<br>
+&ensp; &ensp;&ensp; &ensp; "password": password,<br>
+&ensp; &ensp;&ensp; &ensp; "database": username,<br>
+&ensp; &ensp;&ensp; &ensp; "host": url,<br>
+&ensp; &ensp;&ensp; &ensp; "dialect": "postgres"<br>
+&ensp; &ensp; },
+<br>
+&ensp; &ensp; "test": { <br>
+&ensp; &ensp; &ensp; &ensp; "username": username,<br>
+&ensp; &ensp; &ensp; &ensp; "password": password,<br>
+&ensp; &ensp; &ensp; &ensp; "database": username,<br>
+&ensp; &ensp; &ensp; &ensp; "host": url,<br>
+&ensp; &ensp; &ensp; &ensp; "dialect": "postgres"<br>
+&ensp; &ensp; },<br>
+&ensp; &ensp; "production": { <br>
+&ensp; &ensp; &ensp; &ensp; "username": username,<br>
+&ensp; &ensp; &ensp; &ensp; "password": password,<br>
+&ensp; &ensp; &ensp; &ensp; "database": username,<br>
+&ensp; &ensp; &ensp; &ensp; "host": url,<br>
+&ensp; &ensp; &ensp; &ensp; "dialect": "postgres"<br>
+&ensp; &ensp; },
+<br>
+}
+<br>
+10. Run your server by typing in ‘node index.js’ to the terminal
 11. To use Vote, navigate to http://localhost:3009/home

@@ -4,9 +4,6 @@ const router = express.Router();
 
 const { Users, Positions, Districts } = require("../models");
 
-//use postman:
-//localhost:3007/auth/get_clinic
-
 //custom middleware
 
 const authenticate = (req, res, next) => {
@@ -25,15 +22,12 @@ const authenticateAdmin = (req, res, next) => {
   }
 };
 
-//authenticate
-
 //home:
 router.get("/home", (req, res) => {
   res.render("pages/home", {});
 });
 
 //login:
-
 router.get("/login", (req, res) => {
   res.render("pages/login");
 });
@@ -55,12 +49,10 @@ router.post("/login", async (req, res) => {
     // comparing passwords
     bcrypt.compare(password, user.password, (err, result) => {
       if (err) {
-        console.log(10);
         res.render("pages/login");
         return;
       }
       if (!result) {
-        console.log(12);
         res.render("pages/login");
         return;
       }
@@ -70,6 +62,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//hub:
 router.get("/hub", authenticate, async (req, res) => {
   const findAllData = async () => {
     const user = Users.findOne({
@@ -98,11 +91,11 @@ router.get("/hub", authenticate, async (req, res) => {
   });
 });
 
+//create
 router.get("/create", async (req, res) => {
   res.render("pages/create", {});
 });
 
-//create
 router.post("/create", (req, res) => {
   const { firstname, lastname, username, password, zip } = req.body;
   bcrypt.hash(password, 10, async (err, hash) => {
@@ -191,7 +184,7 @@ router.post("/adminupdate", async (req, res) => {
   res.redirect("/admin");
 });
 
-//delete
+//delete:
 router.post("/deleteposition", async (req, res) => {
   const { positiontitle, districtid } = req.body;
   const positions = await Positions.destroy({
@@ -203,6 +196,7 @@ router.post("/deleteposition", async (req, res) => {
   res.send(`Deleted ${positiontitle} from district ${districtid}.`);
 });
 
+//logout:
 router.post("/logout", (req, res) => {
   console.log(12);
   console.log(req.session);
