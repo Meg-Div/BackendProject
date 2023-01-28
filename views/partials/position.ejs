@@ -1,21 +1,19 @@
 <form action="/review" method="post">
   <div class="positioncard">
     <% position.forEach((pos)=>{ %>
-    <div class="positiontitle">
+      <div class="positiontitle">
         <h1"><%=pos.dataValues.positiontitle%></h1>
         <p><%=pos.dataValues.positiondescription%></p>
-        <div class="positionbuttons">
+        <div class="candidatestitle">
           <h1>Candidates</h1>
-        <% pos.dataValues.candidates.forEach((can)=>{ %>
-<<<<<<< Updated upstream
-          <button class="candidatebutt"><%=can%></button>
-=======
-          <button><%=can[0]%></button>
->>>>>>> Stashed changes
-          <%})%>
+        </div>
+        <div class="positionbuttons">
+          <button class="candidatebutt1"><%=pos.dataValues.candidates[0]%></button>
+          <button class="candidatebutt2"><%=pos.dataValues.candidates[1]%></button>
+          <button class="candidatebutt3"><%=pos.dataValues.candidates[2]%></button>
+        </div>
       </div>
-      </div>
-      <%})%>
+    <%})%>
   </div>
 </form>
 
