@@ -1,5 +1,12 @@
-<h1 align="center">VOTE!</h1>
-<p align="center">Vote is a mobile voter website that allows users to create a personal account and log in to vote, and gives admins the additional ability to add in polls. </p>
+<h1 align="center"> 
+<img src="public/article/left.png" alt="brand">
+VOTE!
+<img src="public/article/right.png" alt="brand">
+</h1>
+
+<br>
+<p align="center">
+Vote is a mobile voter website that allows users to create a personal account and log in to vote, and gives admins the additional ability to add in polls. </p>
 
 ---
 <h2 align="center">Creators:</h2>
@@ -8,7 +15,7 @@ Peter Riesing
 &nbsp; & &nbsp;
 Meg Divringi 
 <br>
-(<a href="https://github.com">Blog</a>, <a href="https://github.com">GitHub</a>) 
+(<a href="https://github.com">Blog</a>, <a href="https://github.com/peterriesing">GitHub</a>) 
 &ensp; &ensp;
 (<a href="https://dev.to/megdiv">Blog</a>, <a href="https://github.com/Meg-Div">GitHub</a>)
 </p>
@@ -30,7 +37,9 @@ Javascript
 
 ---
 <h2 align="center">Use/View:</h2>
-To view the project, head to their portfolios: (Peter’s Portfolio, Meg’s Portfolio).
+To view the project, head to their portfolios: (Peter’s Portfolio, <a href="https://meg-div.github.io/">Meg's Portfolio</a>)
+<br><br>
+To read the project blog, head to: <a href="https://dev.to/megdiv/vote-58eb"> Project Blog</a>
 <br><br>
 To use the project, follow the steps below:
 <br>
@@ -75,3 +84,11 @@ To use the project, follow the steps below:
 <br>
 10. Run your server by typing in ‘node index.js’ to the terminal
 11. To use Vote, navigate to http://localhost:3009/home
+
+<br>
+<br>
+<p align="center"> 
+<img src="public/article/left.png" alt="brand">
+<img width="300" height="auto" src="public/article/brand.jpg" alt="brand">
+<img src="public/article/right.png" alt="brand">
+</p>

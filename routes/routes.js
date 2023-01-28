@@ -4,8 +4,10 @@ const router = express.Router();
 
 const { Users, Positions, Districts } = require("../models");
 
-//custom middleware
+let expirationDate = new Date();
+expirationDate.setDate(expirationDate.getDate() + 30);
 
+//custom middleware
 const authenticate = (req, res, next) => {
   if (req.session.user) {
     next();
@@ -40,26 +42,26 @@ router.post("/login", async (req, res) => {
       username: username,
     },
   });
+
   // create error messages:
   if (!user) {
     res.render("pages/login");
     return;
   }
-  if (user) {
-    // comparing passwords
-    bcrypt.compare(password, user.password, (err, result) => {
-      if (err) {
-        res.render("pages/login");
-        return;
-      }
-      if (!result) {
-        res.render("pages/login");
-        return;
-      }
-      req.session.user = user.dataValues;
-      user.admin == true ? res.redirect("/admin") : res.redirect("/hub");
-    });
-  }
+
+  // comparing passwords
+  bcrypt.compare(password, user.password, (err, result) => {
+    if (err) {
+      res.render("pages/login");
+      return;
+    }
+    if (!result) {
+      res.render("pages/login");
+      return;
+    }
+    req.session.user = user.dataValues;
+    user.admin == true ? res.redirect("/admin") : res.redirect("/hub");
+  });
 });
 
 //hub:
@@ -164,7 +166,6 @@ router.post("/adminupdate", async (req, res) => {
   let expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + 30);
 
-  console.log(expirationDate);
   const position = await Positions.update(
     {
       positiontitle: positiontitle,
@@ -198,8 +199,6 @@ router.post("/deleteposition", async (req, res) => {
 
 //logout:
 router.post("/logout", (req, res) => {
-  console.log(12);
-  console.log(req.session);
   if (req.session) {
     req.session.destroy((err) => {
       res.redirect("/login");
