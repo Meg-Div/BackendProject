@@ -54,34 +54,31 @@ To use the project, follow the steps below:
 7. Create a file called .gitignore (this will secure any files included by not uploading them to GitHub)
 8. Add config.json to .gitignore (this will prevent your password from being visible)
 9. Add in your ElephantSQL information in the below format:
-<br>
+```js
 { 
-<br>
-&ensp; &ensp; "development": { <br>
-&ensp; &ensp;&ensp; &ensp; "username": username,<br>
-&ensp; &ensp;&ensp; &ensp; "password": password,<br>
-&ensp; &ensp;&ensp; &ensp; "database": username,<br>
-&ensp; &ensp;&ensp; &ensp; "host": url,<br>
-&ensp; &ensp;&ensp; &ensp; "dialect": "postgres"<br>
-&ensp; &ensp; },
-<br>
-&ensp; &ensp; "test": { <br>
-&ensp; &ensp; &ensp; &ensp; "username": username,<br>
-&ensp; &ensp; &ensp; &ensp; "password": password,<br>
-&ensp; &ensp; &ensp; &ensp; "database": username,<br>
-&ensp; &ensp; &ensp; &ensp; "host": url,<br>
-&ensp; &ensp; &ensp; &ensp; "dialect": "postgres"<br>
-&ensp; &ensp; },<br>
-&ensp; &ensp; "production": { <br>
-&ensp; &ensp; &ensp; &ensp; "username": username,<br>
-&ensp; &ensp; &ensp; &ensp; "password": password,<br>
-&ensp; &ensp; &ensp; &ensp; "database": username,<br>
-&ensp; &ensp; &ensp; &ensp; "host": url,<br>
-&ensp; &ensp; &ensp; &ensp; "dialect": "postgres"<br>
-&ensp; &ensp; },
-<br>
+    "development": {
+        "username": username,
+        "password": password,
+        "database": username,
+        "host": url,
+        "dialect": "postgres"
+    },
+    "test": {
+        "username": username,
+        "password": password,
+        "database": username,
+        "host": url,
+        "dialect": "postgres"
+    },
+    "production": { 
+        "username": username,
+        "password": password,
+        "database": username,
+        "host": url,
+        "dialect": "postgres"
+    },
 }
-<br>
+```
 10. Run your server by typing in ‘node index.js’ to the terminal
 11. To use Vote, navigate to http://localhost:3009/home
 
