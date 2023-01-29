@@ -1,7 +1,6 @@
 <h1 align="center"> 
-<img src="public/article/left.png" alt="brand">
+<img src="public/article/left.png" alt="brand"> <img width="200" height="auto" src="public/article/brand.jpg" alt="brand"> <img src="public/article/right.png" alt="brand">
 VOTE!
-<img src="public/article/right.png" alt="brand">
 </h1>
 
 <br>
@@ -81,11 +80,8 @@ To use the project, follow the steps below:
 ```
 10. Run your server by typing in ‘node index.js’ to the terminal
 11. To use Vote, navigate to http://localhost:3009/home
-
-<br>
+---
 <br>
 <p align="center"> 
-<img src="public/article/left.png" alt="brand">
-<img width="300" height="auto" src="public/article/brand.jpg" alt="brand">
-<img src="public/article/right.png" alt="brand">
+<img src="public/article/left.png" alt="brand"> <img src="public/article/right.png" alt="brand">
 </p>
