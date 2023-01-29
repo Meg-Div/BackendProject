@@ -1,6 +1,5 @@
 <h1 align="center"> 
 <img src="public/article/left.png" alt="brand"> <img width="200" height="auto" src="public/article/brand.jpg" alt="brand"> <img src="public/article/right.png" alt="brand">
-VOTE!
 </h1>
 
 <br>
