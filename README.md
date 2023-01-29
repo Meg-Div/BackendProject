@@ -4,7 +4,7 @@
 
 <br>
 <p align="center">
-Vote is a mobile voter website that allows users to create a personal account and log in to vote, and gives admins the additional ability to add in polls. </p>
+Vote is a mobile voter website that allows users to create a personal account and log in to vote, and gives admins the additional ability to add, update, or delete new positions. </p>
 
 ---
 <h2 align="center">Creators:</h2>
