@@ -194,7 +194,7 @@ router.post("/deleteposition", async (req, res) => {
       positiontitle: positiontitle,
     },
   });
-  res.send(`Deleted ${positiontitle} from district ${districtid}.`);
+  res.redirect("/admin");
 });
 
 //logout:
