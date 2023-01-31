@@ -86,15 +86,23 @@ input[type="submit"] {
   font-weight: 800;
   font-style: normal;
   letter-spacing: 3px;
+  border-radius: 5px;
   padding: 6px 10px;
   width: fit-content;
+  transition-duration: 0.3s;
+}
+
+input[type="submit"]:hover {
+  box-shadow: 3px 3px 10px 0px #0c002450;
+  background-color: #008cbd;
 }
 
 input[type="text"] {
   border-style: none;
   padding: 6px;
   box-sizing: border-box;
-  width: 300px;
+  border-radius: 2px;
+  width: 350px;
   font-family: "dunbar-text", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -111,14 +119,15 @@ input[type="password"] {
   font-weight: 500;
   font-style: normal;
   box-sizing: border-box;
-  width: 300px;
+  border-radius: 2px;
+  width: 350px;
 }
 
 input[type="password"]::placeholder {
   color: #b8b3b1;
 }
 
-/* LOGIN */
+/*  ========================   LOGIN   ========================  */
 .createquery {
   font-family: "dunbar-tall", sans-serif;
   font-weight: 500;
@@ -147,35 +156,73 @@ input[type="password"]::placeholder {
   margin: auto;
 }
 
-/* CREATE */
-.creatediv {
-  margin-top: 25px;
-}
+/*  ========================   CREATE   ========================  */
+/* .creatediv {
+} */
 
 .createform {
   display: flex;
   flex-direction: column;
-  max-width: 200px;
+  max-width: fit-content;
   gap: 10px;
   margin: auto;
+  justify-content: center;
 }
 
-/* HUB */
+@media screen and (max-width: 400px) {
+  .creatediv {
+    margin: 15px;
+  }
+  input[type="text"] {
+    width: 90vw;
+  }
+  input[type="password"] {
+    width: 90vw;
+  }
+  #textarea textarea {
+    width: 90vw;
+  }
+  #select {
+    box-sizing: 90vw;
+  }
+}
+
+/*  ========================   HUB   ========================  */
+.districthead {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-bottom: 15px;
+  width: 400px;
+  justify-content: center;
+}
+
+.hublogo {
+  max-width: 100px;
+}
+.username {
+  font-family: "dunbar-tall", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #0c0024;
+}
+
 .districtinfo {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 15px;
+  gap: 5px;
+  width: fit-content;
 }
 
 .districtinfo h1 {
-  font-size: 20px;
+  font-size: 26px;
   margin: 0px;
 }
 .districtinfo h2 {
   font-family: "dunbar-tall", sans-serif;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 18px;
   margin: 0px;
 }
 
@@ -185,7 +232,7 @@ input[type="password"]::placeholder {
   gap: 50px;
 }
 
-/* HUB POSITION CARDS */
+/* ========================   HUB POSITION CARDS   ======================== */
 .positions {
   display: flex;
   flex-direction: column;
@@ -194,7 +241,8 @@ input[type="password"]::placeholder {
 
 .positioncard {
   background-color: #e2dddb;
-  width: 400px;
+  width: 600px;
+  border-radius: 3px;
   height: fit-content;
   padding: 15px;
 }
@@ -204,15 +252,14 @@ input[type="password"]::placeholder {
 }
 
 .positiontitle h1 {
-  align-items: center;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 .positiontitle p {
   font-family: "dunbar-text", sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 12px;
+  font-size: 16px;
   padding-bottom: 15px;
   border-bottom: 2px solid #531b6c;
 }
@@ -220,21 +267,70 @@ input[type="password"]::placeholder {
 .positionbuttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 25px;
 }
 
 .positionbuttons button {
   color: #e2dddb;
   border-style: none;
+  border-radius: 5px;
   font-family: "dunbar-tall", sans-serif;
   font-weight: 800;
   font-style: normal;
   letter-spacing: 3px;
   width: fit-content;
   padding: 6px 10px;
+  transition: 0.3s;
 }
 
-/* ADMIN */
+.candidatebutt1 {
+  background-color: #d63c3c;
+}
+
+.candidatebutt1:hover {
+  background-color: #0c0024;
+}
+
+.candidatebutt1:visited {
+  background-color: #0c0024;
+}
+
+.candidatebutt2 {
+  background-color: #531b6c;
+}
+
+.candidatebutt2:hover {
+  background-color: #0c0024;
+}
+
+.candidatebutt3 {
+  background-color: #008cbd;
+}
+
+.candidatebutt3:hover {
+  background-color: #0c0024;
+}
+
+@media screen and (max-width: 450px) {
+  .positioncard {
+    border-radius: 0px;
+    width: fit-content;
+  }
+
+  .positiontitle h1 {
+    font-size: 24px;
+  }
+  .positiontitle p {
+    font-size: large;
+    height: fit-content;
+  }
+  .positionbuttons button {
+    font-size: larger;
+  }
+}
+
+/* ========================   ADMIN   ======================== */
 .admin {
   display: flex;
   flex-direction: row;
@@ -246,7 +342,7 @@ input[type="password"]::placeholder {
 }
 
 .admin h1 {
-  color: #0c0024;
+  color: #e2dddb;
   font-size: 25px;
 }
 
@@ -256,6 +352,11 @@ input[type="password"]::placeholder {
   gap: 50px;
   align-items: center;
   border-bottom: 2px solid #0c0024;
+}
+
+.dashboardbutts {
+  display: flex;
+  gap: 15px;
 }
 
 .positiondiv {
@@ -286,7 +387,7 @@ input[type="password"]::placeholder {
   border-style: none;
   padding: 6px;
   box-sizing: border-box;
-  width: 300px;
+  width: 350px;
 }
 
 #textarea {
@@ -295,20 +396,32 @@ input[type="password"]::placeholder {
   font-style: normal;
   border-style: none;
   box-sizing: border-box;
-  width: 300px;
+  width: 350px;
   padding: 6px;
+}
+
+.adminbuttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #textarea::placeholder {
   color: #b8b3b1;
 }
 
-.candidatebutt1 {
-  background-color: #d63c3c;
-}
-.candidatebutt2 {
-  background-color: #531b6c;
-}
-.candidatebutt3 {
-  background-color: #008cbd;
+@media screen and (max-width: 760px) {
+  .admin {
+    flex-direction: column;
+  }
+  .admintop {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .admintop h1 {
+    margin: 0px;
+  }
+  .dashboardbutts {
+    margin-bottom: 10px;
+  }
 }

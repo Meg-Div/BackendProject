@@ -7,11 +7,16 @@
 
   <body>
     <div class="main">
-      <div class="districtinfo">
-        <h2>Welcome <%=user.firstname%> <%=user.lastname%></h2>
-        <h1>District <%=district.id%></h1>
-        <h2><%=district.county%>, <%=district.state%></h2>
-        <h2>Population: <%=district.population%></h2>
+      <div class="districthead">
+        <img class="hublogo" src="/assets/vote_logo.svg" alt="logo" />
+        <div class="districtinfo">
+          <h2 class="username">
+            Welcome, <%=user.firstname%> <%=user.lastname%>
+          </h2>
+          <h1>District <%=district.id%></h1>
+          <h2><%=district.county%>, <%=district.state%></h2>
+          <h2>Population: <%=district.population%></h2>
+        </div>
       </div>
       <div class="positions"><%- include('../partials/position'); %></div>
       <div class="hubbuttons">
