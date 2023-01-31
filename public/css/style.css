@@ -127,6 +127,29 @@ input[type="password"]::placeholder {
   color: #b8b3b1;
 }
 
+/*  ========================   HOME   ========================  */
+
+.mainhome {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  margin: 60px auto;
+}
+.splash {
+  width: 1000px;
+}
+.getstarted {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 400px) {
+  input[type="submit"] {
+    font-size: 24px;
+  }
+}
+
 /*  ========================   LOGIN   ========================  */
 .createquery {
   font-family: "dunbar-tall", sans-serif;
@@ -328,6 +351,21 @@ input[type="password"]::placeholder {
   .positionbuttons button {
     font-size: larger;
   }
+}
+
+/* ========================   VOTED   ======================== */
+
+.voted {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 60px auto;
+}
+
+.badge {
+  width: 400px;
 }
 
 /* ========================   ADMIN   ======================== */
